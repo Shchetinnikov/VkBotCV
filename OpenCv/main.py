@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 # Для детектирования лиц используем каскады Хаара
-cascadePath = "haarcascade_frontalface_default.xml"
+cascadePath = 'haarcascade_frontalface_default.xml'
 faceCascade = cv2.CascadeClassifier(cascadePath)
 
 # Для распознавания используем локальные бинарные шаблоны
@@ -22,7 +22,7 @@ def get_images(path):
         gray = Image.open(image_path).convert('L')
         image = np.array(gray, 'uint8')
         # Из каждого имени файла извлекаем номер человека, изображенного на фото
-        subject_number = int(os.path.split(image_path)[1].split(".")[0].replace("subject", ""))
+        subject_number = int(os.path.split(image_path)[1].split('.')[0].replace('subject', ''))
 
         # Определяем области где есть лица
         # image – исходное изображение
@@ -35,7 +35,7 @@ def get_images(path):
             images.append(image[y: y + h, x: x + w])
             labels.append(subject_number)
             # В окне показываем изображение
-            cv2.imshow("", image[y: y + h, x: x + w])
+            cv2.imshow('', image[y: y + h, x: x + w])
             cv2.waitKey(50)
     return images, labels
 # Путь к фотографиям
@@ -64,15 +64,15 @@ for image_path in image_paths:
         number_predicted, conf = recognizer.predict(image[y: y + h, x: x + w])
 
         # Извлекаем настоящий номер человека на фото и сравниваем с тем, что выдал алгоритм
-        number_actual = int(os.path.split(image_path)[1].split(".")[0].replace("subject", ""))
+        number_actual = int(os.path.split(image_path)[1].split(".")[0].replace('subject', ''))
 
         if number_actual == number_predicted:
             print
-            "{} is Correctly Recognized with confidence {}".format(number_actual, conf)
+            '{} is Correctly Recognized with confidence {}'.format(number_actual, conf)
         else:
             print
-            "{} is Incorrect Recognized as {}".format(number_actual, number_predicted)
-        cv2.imshow("Recognizing Face", image[y: y + h, x: x + w])
+            '{} is Incorrect Recognized as {}'.format(number_actual, number_predicted)
+        cv2.imshow('Recognizing Face', image[y: y + h, x: x + w])
         cv2.waitKey(1000)
 
 

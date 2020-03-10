@@ -1,4 +1,5 @@
 {
+  "media_folder" : "media",
   "photo_sizes": ["z","y","r"],
   "users": {
     "photo": {
