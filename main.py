@@ -31,7 +31,7 @@ def get_images(path):
         for (x, y, w, h) in faces:
             # Обрезаем цветную фотографию и сохраняем в папку
             cropped = Image.Image.crop(image, (x,y,x + w, y + h))
-            cropped.save(r'../media/faces/feature' + f'{count}' + '.jpg')
+            cropped.save(r'faces/feature' + f'{count}' + '.jpg')
             images.append(imarray[y: y + h, x: x + w])
             # В окне показываем изображение
             cv2.imshow('', imarray[y: y + h, x: x + w])
